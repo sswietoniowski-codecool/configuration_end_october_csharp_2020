@@ -26,11 +26,21 @@ namespace configuration.Pages
 
         public void OnGet()
         {
-            var homePageSection = _configuration.GetSection("Features:HomePage");
+            var featuresHomePage = new FeaturesHomePage();
+            _configuration.Bind("Features:HomePage", featuresHomePage);
 
-            EnableGreeting = homePageSection.GetValue<bool>("EnableGreeting");
-            GreetingMessage = homePageSection.GetValue<string>("GreetingMessage");
-            GreetingColor = homePageSection.GetValue<string>("GreetingColor");
+            EnableGreeting = featuresHomePage.EnableGreeting;
+            GreetingMessage = featuresHomePage.GreetingMessage;
+            GreetingColor = featuresHomePage.GreetingColor;
+        }
+
+        private class FeaturesHomePage
+        {
+            public bool EnableGreeting { get; set; }
+
+            public string GreetingMessage { get; set; }
+
+            public string GreetingColor { get; set; }
         }
     }
 }
