@@ -8,6 +8,14 @@
     @if (Model.EnableGreeting)
     {
         <h1 style="color:@Model.GreetingColor">@Model.GreetingMessage</h1>
+        @if (Model.HasSecretKey)
+        {
+            <p>Secret key: <strong>@Model.SecretKey</strong></p>
+        }
+        else
+        {
+            <p>No secret key found...</p>
+        }
     }
     else
     {

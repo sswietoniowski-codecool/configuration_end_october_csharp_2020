@@ -18,6 +18,8 @@ namespace configuration.Pages
         public bool EnableGreeting { get; set; }
         public string GreetingMessage { get; set; }
         public string GreetingColor { get; set; }
+        public string SecretKey { get; set; }
+        public bool HasSecretKey => !string.IsNullOrEmpty(SecretKey);
 
         public IndexModel(ILogger<IndexModel> logger, IOptionsSnapshot<FeaturesHomePageConfiguration> options)
         {
@@ -30,6 +32,7 @@ namespace configuration.Pages
             EnableGreeting = _featuresHomePageConfiguration.EnableGreeting;
             GreetingMessage = _featuresHomePageConfiguration.GreetingMessage;
             GreetingColor = _featuresHomePageConfiguration.GreetingColor;
+            SecretKey = _featuresHomePageConfiguration.SecretKey;
         }
     }
 }

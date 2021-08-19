@@ -14,5 +14,7 @@ namespace configuration
         public string GreetingMessage { get; set; }
 
         public string GreetingColor { get; set; }
+
+        public string SecretKey { get; set; }
     }
 }
