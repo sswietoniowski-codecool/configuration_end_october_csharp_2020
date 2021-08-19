@@ -24,7 +24,9 @@ namespace configuration
         {
             services.AddRazorPages();
             services.AddMyService(Configuration);
-            services.Configure<FeaturesHomePageConfiguration>(Configuration.GetSection("Features:HomePage"));
+            services.AddOptions<FeaturesHomePageConfiguration>()
+                .Bind(Configuration.GetSection("Features:HomePage"))
+                .ValidateDataAnnotations();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
