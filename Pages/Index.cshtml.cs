@@ -19,7 +19,7 @@ namespace configuration.Pages
         public string GreetingMessage { get; set; }
         public string GreetingColor { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger, IOptions<FeaturesHomePageConfiguration> options)
+        public IndexModel(ILogger<IndexModel> logger, IOptionsSnapshot<FeaturesHomePageConfiguration> options)
         {
             _featuresHomePageConfiguration = options.Value;
             _logger = logger;
