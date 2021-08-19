@@ -6,41 +6,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace configuration.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        private IConfiguration _configuration;
+        private readonly FeaturesHomePageConfiguration _featuresHomePageConfiguration;
 
         public bool EnableGreeting { get; set; }
         public string GreetingMessage { get; set; }
         public string GreetingColor { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger, IConfiguration configuration)
+        public IndexModel(ILogger<IndexModel> logger, IOptions<FeaturesHomePageConfiguration> options)
         {
-            _configuration = configuration;
+            _featuresHomePageConfiguration = options.Value;
             _logger = logger;
         }
 
         public void OnGet()
         {
-            var featuresHomePage = new FeaturesHomePage();
-            _configuration.Bind("Features:HomePage", featuresHomePage);
-
-            EnableGreeting = featuresHomePage.EnableGreeting;
-            GreetingMessage = featuresHomePage.GreetingMessage;
-            GreetingColor = featuresHomePage.GreetingColor;
-        }
-
-        private class FeaturesHomePage
-        {
-            public bool EnableGreeting { get; set; }
-
-            public string GreetingMessage { get; set; }
-
-            public string GreetingColor { get; set; }
+            EnableGreeting = _featuresHomePageConfiguration.EnableGreeting;
+            GreetingMessage = _featuresHomePageConfiguration.GreetingMessage;
+            GreetingColor = _featuresHomePageConfiguration.GreetingColor;
         }
     }
 }
